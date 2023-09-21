@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Textlabel from '../components/Textlabel'
 import Button from '../components/Button'
 
-function Login() {
+const Login = (props) => {
+
+  const goToNovaConta = () => {
+    props.navigation.navigate('NovaConta')
+  }
+
+  const goToEsqueciSenha = () => {
+    props.navigation.navigate('Recuperação de senha')
+  }
+
   return (
     <View style={loginStl.view}>
       <View style={loginStl.viewTitle}>
@@ -22,10 +31,10 @@ function Login() {
 
       <Button text='Entrar' />
       <View style={loginStl.subButtons}>
-        <TouchableOpacity style={loginStl.btnCriarConta}>
+        <TouchableOpacity style={loginStl.btnCriarConta} onPress={goToNovaConta}>
           <Text style={loginStl.textButtons}>Criar minha conta</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={loginStl.btnEsqueci}>
+        <TouchableOpacity style={loginStl.btnEsqueci} onPress={goToEsqueciSenha}>
           <Text style={loginStl.textButtons}>Esqueci minha senha</Text>
         </TouchableOpacity>
       </View>

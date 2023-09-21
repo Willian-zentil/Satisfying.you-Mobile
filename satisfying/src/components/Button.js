@@ -18,9 +18,10 @@ const estilos = StyleSheet.create({
         width: '100%'
     },
     texto: {
-        fontSize: 36,
+        fontSize: 32,
         color: '#fff',
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingVertical: 3
     },
 })
 

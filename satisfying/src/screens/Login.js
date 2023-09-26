@@ -7,11 +7,15 @@ import Button from '../components/Button'
 const Login = (props) => {
 
   const goToNovaConta = () => {
-    props.navigation.navigate('NovaConta')
+    props.navigation.navigate('Nova Conta')
   }
 
   const goToEsqueciSenha = () => {
     props.navigation.navigate('Recuperação de senha')
+  }
+
+  const goToHome = () => {
+    props.navigation.navigate('Home')
   }
 
   return (
@@ -29,7 +33,7 @@ const Login = (props) => {
         <TextInput style={loginStl.textInput}></TextInput>
       </View>
 
-      <Button text='Entrar' />
+      <Button text='Entrar' funcao={goToHome} />
       <View style={loginStl.subButtons}>
         <TouchableOpacity style={loginStl.btnCriarConta} onPress={goToNovaConta}>
           <Text style={loginStl.textButtons}>Criar minha conta</Text>

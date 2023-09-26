@@ -12,11 +12,21 @@ const Stack = createStackNavigator()
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login' screenOptions={{ headerTintColor: '#2B1D62',}}>
-        <Stack.Screen name='Login' component={Login} options={{headerShown: false}} />
-        <Stack.Screen name='NovaConta' component={NovaConta} />
+      <Stack.Navigator initialRouteName='Login' screenOptions={{
+        headerTintColor: '#573fba',
+        headerTitleStyle: {
+          fontSize: 29,
+          color: '#fff',
+        },
+        headerStyle: {
+          backgroundColor: '#2B1D62',
+        }
+      }}>
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name='Nova Conta' component={NovaConta} />
         <Stack.Screen name='Recuperação de senha' component={EsqueciSenha} />
-        <Stack.Screen name='Home' component={Home} options={{headerShown: false}} />
+        <Stack.Screen name='Home' component={Home}
+          options={{/*headerShown: false*/ }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

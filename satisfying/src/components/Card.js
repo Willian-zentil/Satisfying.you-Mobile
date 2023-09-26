@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 function Card(props) {
     return (
-        <TouchableOpacity style={cardStyle.card}>
+        <TouchableOpacity style={cardStyle.card} onPress={props.funcao}>
             <Icon name={props.icon} size={100} color={props.colorIcon}></Icon>
             <Text style={cardStyle.title}>{props.text}</Text>
             <Text style={cardStyle.data}>{props.data}</Text>

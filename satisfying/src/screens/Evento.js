@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, SafeAreaView, ScrollView, Image } from 'react-native'
+import { View, StyleSheet, Text, SafeAreaView, ScrollView, Image, TouchableOpacity } from 'react-native'
 import ViewBlue from '../components/ViewBlue'
 import coleta from '../../assets/image/coleta.png'
 import modificar from '../../assets/image/modificar.png'
@@ -7,34 +7,48 @@ import relatorio from '../../assets/image/relatorio.png'
 
 
 
-function Evento() {
+function Evento(props) {
+
+    const goToModificar = () => {
+        props.navigation.navigate('Modificar Pesquisa')
+    }
+
+    const goToColeta = () => {
+        props.navigation.navigate('Coleta')
+    }
+
+    const goToRelatorio = () => {
+        props.navigation.navigate('Relatorio')
+    }
+
+
     return (
         <ViewBlue>
             <SafeAreaView>
                 <ScrollView horizontal={true}>
-                    <View style={eventoStyle.viewAcoes}>
+                    <TouchableOpacity style={eventoStyle.viewAcoes} onPress={goToModificar} >
                         <Image
                             style={eventoStyle.imgColeta}
                             source={modificar}
                         />
                         <Text style={eventoStyle.text}>Modificar</Text>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View style={eventoStyle.viewAcoes}>
+                    <TouchableOpacity style={eventoStyle.viewAcoes} onPress={goToColeta}>
                         <Image
                             style={eventoStyle.imgColeta}
                             source={coleta}
                         />
                         <Text style={eventoStyle.text}>Coletar dados</Text>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View style={eventoStyle.viewAcoes}>
+                    <TouchableOpacity style={eventoStyle.viewAcoes} onPress={goToRelatorio}>
                         <Image
                             style={eventoStyle.imgColeta}
                             source={relatorio}
                         />
                         <Text style={eventoStyle.text}>Relatório</Text>
-                    </View>
+                    </TouchableOpacity>
                 </ScrollView>
             </SafeAreaView>
         </ViewBlue>

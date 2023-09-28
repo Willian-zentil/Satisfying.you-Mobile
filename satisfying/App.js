@@ -7,6 +7,10 @@ import EsqueciSenha from './src/screens/EsqueciSenha';
 import Home from './src/screens/Home';
 import NovaPesquisa from './src/screens/NovaPesquisa';
 import Evento from './src/screens/Evento';
+import ModificarPesquisa from './src/screens/ModificarPesquisa';
+import Coleta from './src/screens/Coleta';
+import Relatorio from './src/screens/Relatorio';
+
 
 
 const Stack = createStackNavigator()
@@ -31,6 +35,9 @@ function App() {
         <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
         <Stack.Screen name='Nova pesquisa' component={NovaPesquisa} />
         <Stack.Screen name='Evento' component={Evento} />
+        <Stack.Screen name='Modificar Pesquisa' component={ModificarPesquisa} />
+        <Stack.Screen name='Coleta' component={Coleta} />
+        <Stack.Screen name='Relatorio' component={Relatorio} />
       </Stack.Navigator>
     </NavigationContainer>
   )

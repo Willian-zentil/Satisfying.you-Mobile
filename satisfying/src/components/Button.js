@@ -1,11 +1,12 @@
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import React, { useState } from 'react'
 
 const Button = (props) => {
 
     const text = props.text
 
     return (
-        <TouchableOpacity style={estilos.fundo} onPress={props.funcao}>
+        <TouchableOpacity style={estilos.fundo} onPress={props.funcao} disabled={props.active}>
             <Text style={estilos.texto}>{text}</Text>
         </TouchableOpacity>
     )

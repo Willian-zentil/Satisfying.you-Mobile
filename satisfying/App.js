@@ -10,6 +10,8 @@ import Evento from './src/screens/Evento';
 import ModificarPesquisa from './src/screens/ModificarPesquisa';
 import Coleta from './src/screens/Coleta';
 import Relatorio from './src/screens/Relatorio';
+import Obrigado from './src/screens/Obrigado';
+import Drawer from './src/screens/Drawer';
 
 
 
@@ -33,11 +35,13 @@ function App() {
         <Stack.Screen name='Nova Conta' component={NovaConta} />
         <Stack.Screen name='Recuperação de senha' component={EsqueciSenha} />
         <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name='Drawer' component={Drawer} options={{ headerShown: false }} />
         <Stack.Screen name='Nova pesquisa' component={NovaPesquisa} />
         <Stack.Screen name='Evento' component={Evento} />
         <Stack.Screen name='Modificar Pesquisa' component={ModificarPesquisa} />
         <Stack.Screen name='Coleta' component={Coleta} />
         <Stack.Screen name='Relatorio' component={Relatorio} />
+        <Stack.Screen name='Obrigado' component={Obrigado} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import ViewBlue from '../components/ViewBlue'
 import {
-  View, StyleSheet, SafeAreaView, ScrollView, TextInput
+  View, StyleSheet, SafeAreaView, ScrollView, TextInput, TouchableOpacity
 } from 'react-native'
 import Button from '../components/Button'
 import ViewBtn from '../components/ViewBtn'
@@ -12,17 +12,23 @@ function Home(props) {
 
   const goToNovaPesquisa = () => {
     props.navigation.navigate('Nova pesquisa')
-  }
+  } 
 
   const goToPageEvent = () => {
     props.navigation.navigate('Evento')
   }
 
+  const openDrawer = () => {
+    props.navigation.navigate('Drawer')
+  }
+
   return (
     <>
-      <View style={viewCards.menu}>
-        <Icon name="menu" size={60} color="#fff"></Icon>
-      </View>
+      {/*      <View style={viewCards.menu}>
+        <TouchableOpacity onPress={openDrawer}>
+          <Icon name="menu" size={60} color="#fff"></Icon>
+        </TouchableOpacity>
+      </View> */}
       <ViewBlue>
         <View style={viewCards.viewSearch}>
           <Icon style={viewCards.icon} name="search" size={35} color="#999999"></Icon>
@@ -68,9 +74,9 @@ const viewCards = StyleSheet.create({
     position: 'relative',
     top: -40
   },
-   view: {
+  view: {
     marginBottom: 50
-   }
+  }
 })
 
 export default Home

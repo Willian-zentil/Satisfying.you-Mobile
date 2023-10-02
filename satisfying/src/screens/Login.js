@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Textlabel from '../components/Textlabel'
 import Button from '../components/Button'
+import ErrorText from '../components/ErrorText'
 
 const Login = (props) => {
+
+  const [ email, setEmail ] = useState('')
+  const [ validEmail, setvalidEmail ] = useState(false)
+  const [ password, setPassword ] = useState('')
+
+
 
   const goToNovaConta = () => {
     props.navigation.navigate('Nova Conta')
@@ -15,8 +22,22 @@ const Login = (props) => {
   }
 
   const goToHome = () => {
-    props.navigation.navigate('Home')
+    props.navigation.navigate('Drawer')
   }
+
+
+  const validarEmail = (text) => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+    if (reg.test(text) === false) {
+      setEmail(text)
+      setvalidEmail(false)
+    } else {
+      setEmail(text)
+      setvalidEmail(true)
+    }
+  }
+
 
   return (
     <View style={loginStl.view}>
@@ -26,11 +47,12 @@ const Login = (props) => {
       </View>
 
       <Textlabel text='E-mail' />
-      <TextInput style={loginStl.textInput}></TextInput>
+      <TextInput style={loginStl.textInput} value={email} onChangeText={(text) => validarEmail(text)}></TextInput>
 
       <View style={loginStl.viewSenha}>
         <Textlabel text='Senha' />
-        <TextInput style={loginStl.textInput}></TextInput>
+        <TextInput style={loginStl.textInput} value={password} onChangeText={setPassword}></TextInput>
+        {!validEmail && <ErrorText message="E-mail e/ou senha inválidos." color="#FD7979" />}
       </View>
 
       <Button text='Entrar' funcao={goToHome} />

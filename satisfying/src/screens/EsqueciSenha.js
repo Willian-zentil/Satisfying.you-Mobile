@@ -7,7 +7,10 @@ import ViewInput from '../components/ViewInput'
 import ViewBtn from '../components/ViewBtn'
 import ErrorText from '../components/ErrorText'
 
-function EsqueciSenha() {
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { auth_mod } from '../firebase/config'
+
+function EsqueciSenha(props) {
 
     const [ email, setEmail ] = useState('')
     const [ validEmail, setvalidEmail ] = useState(false)
@@ -24,7 +27,17 @@ function EsqueciSenha() {
         }
       }
 
-
+    const recuperarSenha = () => {
+        sendPasswordResetEmail(auth_mod, email)
+            .then(() => {
+                console.log('email enviado com sucesso')
+                props.navigation.navigate('Login')
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+            })
+    }  
+    
 
     return (
         <ViewBlue>
@@ -36,7 +49,7 @@ function EsqueciSenha() {
             {!validEmail && <ErrorText message="E-mail e/ou senha inválidos." color="#FD7979" />}
 
             <ViewBtn>
-                <Button text='RECUPERAR' />
+                <Button funcao={recuperarSenha} text='RECUPERAR' />
             </ViewBtn>
         </ViewBlue>
     )

@@ -8,15 +8,38 @@ import ViewInput from '../components/ViewInput'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import ErrorText from '../components/ErrorText'
 
+import { collection, initializeFirestore, addDoc } from 'firebase/firestore'
+import { app } from '../firebase/config'
 
 
-function NovaPesquisa() {
 
+function NovaPesquisa(props) {
+    
     const [ nome, setNome ] = useState('')
     const [ data, setData ] = useState('')
     const [ imagem, setImg ] = useState('')
 
+    const db = initializeFirestore(app, {experimentalForceLongPolling: true})
+    const pesquisasCollection = collection(db, "pesquisa")
 
+    const novaPesquisaF = () => {
+        const docPesquisa = {
+            Nome: nome,
+            Data: data,
+            Image: imagem
+        }
+        addDoc(pesquisasCollection, docPesquisa)
+            .then((docker) => {
+                console.log('novo documento inserido')
+                setNome('')
+                setData('')
+                setImg('')
+                props.navigation.navigate('Home')
+            })
+            .catch(() => {
+                console.log('problema ao cadastrar documento')
+            })
+    }
 
     return (
         <ViewBlue>
@@ -36,7 +59,7 @@ function NovaPesquisa() {
             {!imagem && <ErrorText message="Escolha uma imagem" color="#FD7979" />}
 
             <ViewBtn>
-                <Button text='CADASTRAR' />
+                <Button funcao={novaPesquisaF} text='CADASTRAR' />
             </ViewBtn>
         </ViewBlue>
     )

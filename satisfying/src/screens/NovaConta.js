@@ -5,11 +5,15 @@ import ViewBlue from '../components/ViewBlue'
 import Button from '../components/Button'
 import ViewInput from '../components/ViewInput'
 import ViewBtn from '../components/ViewBtn'
-
 import ErrorText from '../components/ErrorText'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth_mod } from '../firebase/config'
 
 
-const NovaConta = () => {
+
+
+
+const NovaConta = (props) => {
 
     const [email, setEmail] = useState('')
     const [password1, setPassword1] = useState('')
@@ -27,6 +31,19 @@ const NovaConta = () => {
             setEmail(text)
             setvalidEmail(true)
         }
+    }
+
+    const cadastrarUser = () => {
+        createUserWithEmailAndPassword(auth_mod, email, password1)
+            .then((userCredential) => {
+                setPassword1('')
+                setPassword2('')
+                setEmail('')
+                props.navigation.navigate('Login')
+            })
+            .catch(() => {
+                console.log('erro ao criar usuario1')
+            })
     }
 
     useEffect(() => {
@@ -56,7 +73,7 @@ const NovaConta = () => {
             {!validEmail && <ErrorText message="Preencha um E-mail válido." color="#FD7979" />}
 
             <ViewBtn>
-                <Button text='CADASTRAR' />
+                <Button funcao={cadastrarUser} text='CADASTRAR' />
             </ViewBtn>
         </ViewBlue>
     )

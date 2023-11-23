@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import Textlabel from '../components/Textlabel'
 import Button from '../components/Button'
 import ErrorText from '../components/ErrorText'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth_mod } from '../firebase/config'
 
 const Login = (props) => {
 
@@ -38,6 +40,15 @@ const Login = (props) => {
     }
   }
 
+  const autenticarUser = () => {
+    signInWithEmailAndPassword(auth_mod,email, password)
+      .then(()=>{
+        console.log('usuario autenticado com sucesso')
+        goToHome()
+      })
+      .catch('erro ao autenticar usuario')
+  }
+
 
   return (
     <View style={loginStl.view}>
@@ -51,11 +62,11 @@ const Login = (props) => {
 
       <View style={loginStl.viewSenha}>
         <Textlabel text='Senha' />
-        <TextInput style={loginStl.textInput} value={password} onChangeText={setPassword}></TextInput>
+        <TextInput secureTextEntry={true} style={loginStl.textInput} value={password} onChangeText={setPassword}></TextInput>
         {!validEmail && <ErrorText message="E-mail e/ou senha inválidos." color="#FD7979" />}
       </View>
 
-      <Button text='Entrar' funcao={goToHome} />
+      <Button text='Entrar' funcao={autenticarUser} />
       <View style={loginStl.subButtons}>
         <TouchableOpacity style={loginStl.btnCriarConta} onPress={goToNovaConta}>
           <Text style={loginStl.textButtons}>Criar minha conta</Text>

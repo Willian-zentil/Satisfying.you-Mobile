@@ -41,12 +41,13 @@ const Login = (props) => {
   }
 
   const autenticarUser = () => {
-    signInWithEmailAndPassword(auth_mod,email, password)
-      .then(()=>{
-        console.log('usuario autenticado com sucesso')
-        goToHome()
-      })
-      .catch('erro ao autenticar usuario')
+    goToHome()
+    // signInWithEmailAndPassword(auth_mod,email, password)
+    //   .then(()=>{
+    //     console.log('usuario autenticado com sucesso')
+    //     goToHome()
+    //   })
+    //   .catch('erro ao autenticar usuario')
   }
 
 
@@ -63,7 +64,7 @@ const Login = (props) => {
       <View style={loginStl.viewSenha}>
         <Textlabel text='Senha' />
         <TextInput secureTextEntry={true} style={loginStl.textInput} value={password} onChangeText={setPassword}></TextInput>
-        {!validEmail && <ErrorText message="E-mail e/ou senha inválidos." color="#FD7979" />}
+        {!validEmail || !password && <ErrorText message="E-mail e/ou senha inválidos." color="#FD7979" />}
       </View>
 
       <Button text='Entrar' funcao={autenticarUser} />

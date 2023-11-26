@@ -7,6 +7,7 @@ import Button from '../components/Button'
 import ViewBtn from '../components/ViewBtn'
 import ViewInput from '../components/ViewInput'
 import { opacity } from 'react-native-reanimated/lib/typescript/reanimated2/Colors'
+import { doc, updateDoc } from 'firebase/firestore'
 
 
 

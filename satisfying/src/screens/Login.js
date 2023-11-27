@@ -41,13 +41,12 @@ const Login = (props) => {
   }
 
   const autenticarUser = () => {
-    goToHome()
-    // signInWithEmailAndPassword(auth_mod,email, password)
-    //   .then(()=>{
-    //     console.log('usuario autenticado com sucesso')
-    //     goToHome()
-    //   })
-    //   .catch('erro ao autenticar usuario')
+    signInWithEmailAndPassword(auth_mod,email, password)
+      .then(()=>{
+        console.log('usuario autenticado com sucesso')
+        goToHome()
+      })
+      .catch('erro ao autenticar usuario')
   }
 
 

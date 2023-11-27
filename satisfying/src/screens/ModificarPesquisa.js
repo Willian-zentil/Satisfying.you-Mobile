@@ -8,6 +8,7 @@ import ViewBtn from '../components/ViewBtn'
 import ViewInput from '../components/ViewInput'
 import { opacity } from 'react-native-reanimated/lib/typescript/reanimated2/Colors'
 import { doc, updateDoc } from 'firebase/firestore'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
 
 
 
@@ -15,6 +16,20 @@ import { doc, updateDoc } from 'firebase/firestore'
 function ModificarPesquisa(props) {
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [nomeProj, setNomeProj] = useState('Evento 2024');
+    const [dataProj, setSataProj] = useState('20/11/2024');
+    const [image, setImage] = useState('person');
+    const [id, setId] = useState('person');
+
+    // const idList = useSelector((state) => {
+    //     console.log('state----------------------------', state.idProj)
+    //     return state.idProj.id
+    // })
+
+
+    const changeProj = () => {
+
+    }
 
 
     const goToHome = () => {
@@ -26,18 +41,18 @@ function ModificarPesquisa(props) {
         <ViewBlue>
             <View style={modalVisible && { opacity: .1 }}>
                 <Textlabel text='Nome' />
-                <TextInput style={modificarPesquisa.textInput} placeholder={'Evento 2023'} placeholderTextColor="#3F92C5"></TextInput>
+                <TextInput style={modificarPesquisa.textInput} placeholder={nomeProj} placeholderTextColor="#3F92C5"></TextInput>
 
                 <ViewInput>
                     <Textlabel text='Data' />
                     <Icon style={modificarPesquisa.icon} name="event" size={35} color="#999999"></Icon>
-                    <TextInput style={modificarPesquisa.textInput} type={'data'} placeholder={'20/11/2023'} placeholderTextColor="#3F92C5"></TextInput>
+                    <TextInput style={modificarPesquisa.textInput} type={'data'} placeholder={dataProj} placeholderTextColor="#3F92C5"></TextInput>
                 </ViewInput>
 
                 <View style={modificarPesquisa.viewIcon}>
                     <Textlabel text='Imagem' />
                     <TextInput style={modificarPesquisa.imageInput}></TextInput>
-                    <Icon style={modificarPesquisa.iconChange} name="person" size={55} color="pink"></Icon>
+                    <Icon style={modificarPesquisa.iconChange} name={image} size={55} color="pink"></Icon>
                 </View>
 
                 <ViewBtn>
